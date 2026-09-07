@@ -1,0 +1,26 @@
+name: Build Windows installer
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build application
+        shell: pwsh
+        run: .\build_windows.ps1
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+      - name: Build installer
+        shell: pwsh
+        run: iscc installer.iss
+      - uses: actions/upload-artifact@v4
+        with:
+          name: InterviewCopilot-Windows-Installer
+          path: Output/InterviewCopilot-Setup.exe
