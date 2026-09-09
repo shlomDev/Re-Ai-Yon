@@ -1,0 +1,11 @@
+{
+  "folders": [
+    { "path": "." }
+  ],
+  "settings": {
+    "python.analysis.typeCheckingMode": "basic",
+    "files.exclude": {
+      "**/__pycache__": true
+    }
+  }
+}

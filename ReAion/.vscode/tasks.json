@@ -1,0 +1,119 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup",
+      "type": "shell",
+      "command": "${workspaceFolder}\\install.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run ReAion",
+      "type": "shell",
+      "command": "${workspaceFolder}\\start_auto_watcher.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Full Test",
+      "type": "shell",
+      "command": "${workspaceFolder}\\run_full_test.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Answer UI Test",
+      "type": "shell",
+      "command": "${workspaceFolder}\\test_live_answers.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "Check Status",
+      "type": "shell",
+      "command": "${workspaceFolder}\\check_status.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test ChatGPT Readiness",
+      "type": "shell",
+      "command": "python chatgpt_integration_test.py",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test ChatGPT Automatic Submission",
+      "type": "shell",
+      "command": "python chatgpt_integration_test.py --submit",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Unit Tests",
+      "type": "shell",
+      "command": "python -m unittest discover -s tests -v",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Preflight",
+      "type": "shell",
+      "command": "python preflight.py",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Check All Answer Providers",
+      "type": "shell",
+      "command": "python provider_self_test.py",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Prototype: check status",
+      "type": "shell",
+      "command": "${workspaceFolder}\\check_status.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "Prototype: full self-test",
+      "type": "shell",
+      "command": "${workspaceFolder}\\run_full_test.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: compile project",
+      "type": "shell",
+      "command": "python -m compileall -q .",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Mock Interview",
+      "type": "shell",
+      "command": "python mock_interview.py --serve",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test Mock Interview Pipeline",
+      "type": "shell",
+      "command": "python mock_interview.py",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

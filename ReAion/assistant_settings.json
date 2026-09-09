@@ -1,0 +1,51 @@
+{
+  "answer_engine": {
+    "provider": "chatgpt_browser",
+    "fallback": "built_in"
+  },
+  "anthropic": {
+    "api_key_env": "ANTHROPIC_API_KEY",
+    "model": "claude-sonnet-4-20250514",
+    "url": "https://api.anthropic.com/v1/messages",
+    "max_tokens": 300,
+    "timeout_seconds": 20
+  },
+  "openai_compatible": {
+    "api_key_env": "OPENAI_API_KEY",
+    "model": "gpt-4.1-mini",
+    "url": "https://api.openai.com/v1",
+    "max_tokens": 300,
+    "timeout_seconds": 20
+  },
+  "chatgpt_windows": {
+    "companion_shortcut": "% ",
+    "window_timeout_seconds": 5
+  },
+  "chatgpt_browser": {
+    "url": "https://chatgpt.com/",
+    "user_data_dir": "",
+    "headless": false
+  },
+  "claude_desktop": {
+    "timeout_seconds": 5,
+    "free_account_supported": true
+  },
+  "local_ai": {
+    "provider": "ollama",
+    "url": "http://127.0.0.1:11434",
+    "model": "qwen2.5:3b-instruct",
+    "timeout_seconds": 20
+  },
+  "live": {
+    "whisper_model": "large-v3-turbo",
+    "language": "auto",
+    "interviewer_chunk_seconds": 3,
+    "question_context_segments": 3,
+    "question_min_chars": 12,
+    "question_silence_seconds": 1.0
+  },
+  "answers": {
+    "target_words": 80,
+    "max_words": 130
+  }
+}

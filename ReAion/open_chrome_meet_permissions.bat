@@ -1,0 +1,1 @@
+@echo off\necho Opening Chrome Meet permissions...\nstart "" chrome "chrome://settings/content/siteDetails?site=https%%3A%%2F%%2Fmeet.google.com"\necho.\necho Recommended:\necho   Microphone: Allow\necho   Camera: Allow or Ask, based on your preference\necho.\npause\n

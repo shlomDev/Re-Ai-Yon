@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "ReAion",
+  "version": "0.2.0",
+  "description": "Signals the local interview recorder, auto-enables the microphone, and asks before enabling the camera.",
+  "permissions": [
+    "alarms",
+    "sidePanel",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://meet.google.com/*",
+    "https://teams.microsoft.com/*",
+    "https://teams.live.com/*",
+    "https://*.zoom.us/*",
+    "https://*.webex.com/*",
+    "https://app.chime.aws/*",
+    "http://127.0.0.1:8765/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open ReAion"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://meet.google.com/*",
+        "https://teams.microsoft.com/*",
+        "https://teams.live.com/*",
+        "https://*.zoom.us/*",
+        "https://*.webex.com/*",
+        "https://app.chime.aws/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
