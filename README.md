@@ -31,14 +31,3 @@ The Chrome panel, shared session pipeline and deterministic mock are implemented
 and covered by automated tests. Real meeting audio, AI accounts, cross-platform
 capture and packaged installers still require live validation. See
 [PROJECT_STATE.md](ReAion/PROJECT_STATE.md) for verified status.
-
-## Repository guide
-
-| Location | Purpose |
-| --- | --- |
-| [`ReAion/`](ReAion/) | Current application source and developer instructions |
-| [`ReAion/chrome_extension/`](ReAion/chrome_extension/) | Browser meeting controls and answer panel |
-| [`ReAion/live_session.py`](ReAion/live_session.py) | Provider-independent live session pipeline |
-| [`ReAion/answer_providers.py`](ReAion/answer_providers.py) | AI provider adapters |
-| [`ReAion/tests/`](ReAion/tests/) | Automated component and regression tests |
-| [`ReAion/PROJECT_STATE.md`](ReAion/PROJECT_STATE.md) | What works, limitations and the next step |
