@@ -14,6 +14,7 @@ source, not a verified live-interview release or one-click installer.*
 ## What the tool does
 
 - Keeps the browser meeting visible while the assistant occupies the side panel.
+- Detects supported meeting links automatically and offers **Open meeting in ReAion** from Chrome's context menu; no URL textbox is required.
 - Shows the detected question and suggested answer in large text.
 - Breaks long answers into short teleprompter chunks and follows the candidate's
   speech; candidate microphone audio cannot trigger a new answer.
