@@ -11,7 +11,7 @@ ReAion is a live interview assistant that detects interview questions and shows 
 - Supports multilingual interviews, including Hebrew.
 - Is designed for Google Meet, Microsoft Teams, Zoom, Webex, Amazon Chime and other interview platforms.
 
-![ReAion interface example](docs/images/answer-panel-example.png)
+![ReAion demo](docs/images/ReAion-demo.gif)
 
 ## How to run it
 
