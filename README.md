@@ -6,7 +6,7 @@ ReAion is a browser-first live interview assistant. It listens to the
 interviewer, detects completed questions, generates a suggested answer, and
 shows it beside the meeting in a large, readable teleprompter.
 
-![Illustrative ReAion browser layout with the meeting on the left and the assistant on the right](ReAion/docs/images/answer-panel-example.png)
+![Illustrative ReAion browser layout with the meeting on the left and the assistant on the right](ReAion_demo_fluent.gif)
 
 *Illustrative mockup with simulated content. ReAion is currently development
 source, not a verified live-interview release or one-click installer.*
