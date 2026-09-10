@@ -38,6 +38,7 @@ disable_watcher_at_login.bat
 discovery/__init__.py
 discovery/registry.py
 docs/TARGET_ARCHITECTURE.md
+docs/images/answer-panel-example.png
 enable_watcher_at_login.bat
 ensure_pc_sound.bat
 ensure_pc_sound.py

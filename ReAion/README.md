@@ -6,6 +6,14 @@
 Browser interviews are primary. A Chrome side panel works with a local companion;
 the optional desktop view uses the same live session logic.
 
+## Product overview and example
+
+See the [detailed repository overview](../README.md) for the workflow, answer-engine comparison, language support, platform status and privacy behavior.
+
+![Illustrative ReAion browser layout](docs/images/answer-panel-example.png)
+
+AI-generated layout mockup with simulated content, not an actual screenshot or proof of live integration. ChatGPT replies stay in its own window; the pictured custom-panel answer applies to engines that return text. Run the mock below to see the actual implemented panel.
+
 ## Test the mock first (no AI account or audio devices)
 
 ```
