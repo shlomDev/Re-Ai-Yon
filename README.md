@@ -15,8 +15,6 @@ The UI uses a dark-grey background with violet accents. The previous yellow/ambe
 - Can use different answer providers, including ChatGPT-style browser/desktop workflows, APIs and optional local models.
 - Can use a candidate profile, answer bank and interview guidance as context.
 
-![ReAion interface example](ReAion/docs/images/answer-panel-example.png)
-
 ## Repository guide
 
 The maintained project is under `ReAion/`.
