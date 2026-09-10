@@ -77,18 +77,6 @@
       "problemMatcher": []
     },
     {
-      "label": "Prototype: check status",
-      "type": "shell",
-      "command": "${workspaceFolder}\\check_status.bat",
-      "problemMatcher": []
-    },
-    {
-      "label": "Prototype: full self-test",
-      "type": "shell",
-      "command": "${workspaceFolder}\\run_full_test.bat",
-      "problemMatcher": []
-    },
-    {
       "label": "Python: compile project",
       "type": "shell",
       "command": "python -m compileall -q .",

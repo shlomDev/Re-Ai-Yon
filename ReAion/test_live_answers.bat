@@ -3,8 +3,8 @@ setlocal
 cd /d "%~dp0"
 where py >nul 2>nul
 if %errorlevel%==0 (
-    py demo_live_answers.py
+    py mock_interview.py --serve
 ) else (
-    python demo_live_answers.py
+    python mock_interview.py --serve
 )
 pause

@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 
 echo ============================================================
-echo Interview Auto Transcriber v6 - Complete Setup
+echo ReAion - Developer Setup
 echo ============================================================
 echo.
 

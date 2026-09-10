@@ -74,3 +74,12 @@ before advertising those platforms as supported.
 Project and tool renamed to ReAion (reh-ah-yon; ראיון). UI, extension, launchers,
 workspace and executable build names use ReAion. Legacy per-user data paths,
 environment variables and installer AppId remain compatible.
+
+## Repository cleanup — 2026-09-10
+
+Removed legacy InterviewCopilot archives/build copies, obsolete v6 instructions,
+the inactive nested installer workflow, the demo that writes to the old feed path,
+and superseded setup/UI-test scripts. The answer-demo launcher now uses the current
+mock_interview.py. Duplicate VS Code tasks were removed. Native build recipes remain
+for development; installer automation must be reintroduced at repository root only
+when the build is ready for validation. Historical versions remain in Git history.

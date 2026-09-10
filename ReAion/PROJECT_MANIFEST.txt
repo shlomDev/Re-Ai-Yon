@@ -1,6 +1,5 @@
 ReAion 0.2.0 development source
 .env.example
-.github/workflows/windows-installer.yml
 .gitignore
 .vscode/settings.json
 .vscode/tasks.json
@@ -35,11 +34,9 @@ chrome_extension/sidepanel.css
 chrome_extension/sidepanel.html
 chrome_extension/sidepanel.js
 claude_desktop.py
-demo_live_answers.py
 disable_watcher_at_login.bat
 discovery/__init__.py
 discovery/registry.py
-docs/PROTOTYPE_V6_README.md
 docs/TARGET_ARCHITECTURE.md
 enable_watcher_at_login.bat
 ensure_pc_sound.bat
@@ -69,12 +66,10 @@ run_tests.sh
 runtime_data.py
 runtime_state.py
 setup_everything.bat
-setup_interview.bat
 setup_local_ai.bat
 setup_private_profile.py
 start_auto_watcher.bat
 teleprompter.py
-test_answer_screen.bat
 test_live_answers.bat
 tests/test_answer_engine.py
 tests/test_app_paths.py

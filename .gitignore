@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets / environment
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Interview artifacts
+candidate_profile.md
+answer_bank.json
+interview_guidance.md
+interviews.json
+private_data/
+recordings/
+test_reports/
+live_transcript.jsonl
+last_self_test.json
+*.wav
+*.mp3
+*.m4a
+*.webm
+*transcript*.txt
+
+# Runtime state
+.stop_transcriber
+.scheduled_test_state.json
+*.log
+
+# IDE / OS
+.vscode/*.local.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Browser/auth material - never commit
+*Cookies*
+*Login Data*
+*Web Data*
+*browser_profile*/
+*chrome_profile*/
+
+# All private runtime feeds/state and build output
+*transcript*.jsonl
+panel_state.json
+panel_next.json
+build/
+dist/
+.build-venv/
+
+# Distribute generated archives through releases, not source control.
+*.zip
+*.crx
+*.exe

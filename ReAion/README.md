@@ -82,3 +82,9 @@ tested in this environment. No EXE/DMG/AppImage is supplied or claimed working.
 Existing private data stays in the InterviewCopilot per-user directory. The
 INTERVIEWCOPILOT_DATA_DIR environment override and installer AppId are preserved
 to avoid orphaning profiles or creating a second installation identity.
+
+## Repository layout
+
+The repository contains this current ReAion source directory and a root overview.
+Old ZIP distributions and obsolete prototype files were removed; use Git history
+for historical versions. Current Windows build recipes remain development-only.
