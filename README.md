@@ -1,35 +1,45 @@
 # ReAion
 
-ReAion is a live interview assistant that keeps the interview visible while showing the detected question and a suggested answer in a side panel.
+**ReAion** (pronounced *reh-ah-yon*) means **interview** — ראיון — in Hebrew.
+
+ReAion is a browser-first live interview assistant. It listens to the
+interviewer, detects completed questions, generates a suggested answer, and
+shows it beside the meeting in a large, readable teleprompter.
+
+![Illustrative ReAion browser layout with the meeting on the left and the assistant on the right](ReAion/docs/images/answer-panel-example.png)
+
+*Illustrative mockup with simulated content. ReAion is currently development
+source, not a verified live-interview release or one-click installer.*
 
 ## What the tool does
 
-- Listens to the interview and detects interviewer questions.
-- Generates suggested answers automatically.
-- Shows the question and answer in a large, readable side panel.
-- Advances the teleprompter as you speak, with manual **Next lines** control as a fallback.
-- Supports multilingual interviews, including Hebrew.
-- Is designed for Google Meet, Microsoft Teams, Zoom, Webex, Amazon Chime and other browser/desktop interview platforms.
-- Can use your candidate profile, answer bank and interview guidance as context.
+- Keeps the browser meeting visible while the assistant occupies the side panel.
+- Shows the detected question and suggested answer in large text.
+- Breaks long answers into short teleprompter chunks and follows the candidate's
+  speech; candidate microphone audio cannot trigger a new answer.
+- Keeps the app open after the interview and shows a summary of questions,
+  weak-answer review flags, STAR opportunities and confidence, with report,
+  PDF-print and practice actions.
+- Transcribes locally with Whisper and supports multilingual text, including
+  right-to-left Hebrew.
+- Targets Meet, Teams, Zoom, Webex, Chime and a generic browser fallback through
+  provider adapters.
+- Supports API-based answer engines and Ollama in the panel. Experimental
+  ChatGPT/Claude UI automation leaves replies in their own visible AI window.
+- Keeps personal profiles, transcripts and recordings out of the repository.
 
-<p align="center">
-  <img src="ReAion_demo_fluent.gif" alt="ReAion Demo" width="100%">
-</p>
+The Chrome panel, shared session pipeline and deterministic mock are implemented
+and covered by automated tests. Real meeting audio, AI accounts, cross-platform
+capture and packaged installers still require live validation. See
+[PROJECT_STATE.md](ReAion/PROJECT_STATE.md) for verified status.
 
-## How to run it
+## Repository guide
 
-### Windows
-
-1. Double-click `ReAion/Launch_ReAion.bat`.
-2. Paste your interview link and click **Start Interview**.
-
-ReAion installs anything it needs on the first run, opens the interview in Chrome, and waits. It starts listening only after it detects that you have actually joined the call.
-
-### Quick mock test
-
-```bash
-cd ReAion
-python mock_interview.py --serve
-```
-
-Then open `http://127.0.0.1:8765` in your browser.
+| Location | Purpose |
+| --- | --- |
+| [`ReAion/`](ReAion/) | Current application source and developer instructions |
+| [`ReAion/chrome_extension/`](ReAion/chrome_extension/) | Browser meeting controls and answer panel |
+| [`ReAion/live_session.py`](ReAion/live_session.py) | Provider-independent live session pipeline |
+| [`ReAion/answer_providers.py`](ReAion/answer_providers.py) | AI provider adapters |
+| [`ReAion/tests/`](ReAion/tests/) | Automated component and regression tests |
+| [`ReAion/PROJECT_STATE.md`](ReAion/PROJECT_STATE.md) | What works, limitations and the next step |

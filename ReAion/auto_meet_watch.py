@@ -10,7 +10,7 @@ import time
 import urllib.parse
 from window_manager import LayoutSession
 from app_paths import private_path
-from runtime_state import read_state, request_next
+from runtime_state import read_state, request_next, write_json
 from launcher import worker_command
 
 HOST = "127.0.0.1"
@@ -342,6 +342,18 @@ class Handler(BaseHTTPRequestHandler):
             selected_meeting = None
             request_stop()
             self._json(200, {'ok': True}); return
+
+        if self.path == '/generate-report':
+            state = read_state()
+            report = {
+                'title': 'ReAion Interview Summary',
+                'summary': state.get('summary', {}),
+                'generated_at': dt.datetime.now(dt.timezone.utc).isoformat(),
+            }
+            report_path = private_path('interview_report.json')
+            write_json(report_path, report)
+            self._json(200, {'ok': True, 'message': f'Report saved locally: {report_path.name}'})
+            return
 
         if self.path == "/panel-next":
             request_next()

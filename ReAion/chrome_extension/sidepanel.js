@@ -11,6 +11,16 @@ async function refresh() {
   try {
     const d = await api('/panel-state');
     state.textContent = d.state;
+    const finished = d.state === 'INTERVIEW COMPLETE';
+    document.getElementById('live-view').hidden = finished;
+    document.getElementById('summary-view').hidden = !finished;
+    if (finished && d.summary) {
+      document.getElementById('questions-asked').textContent = d.summary.questions_asked || 0;
+      document.getElementById('questions-answered').textContent = d.summary.questions_answered || 0;
+      document.getElementById('weak-answers').textContent = d.summary.weak_answers || 0;
+      document.getElementById('star-opportunities').textContent = d.summary.star_opportunities || 0;
+      document.getElementById('confidence').textContent = (d.summary.confidence || 0) + '%';
+    }
     for (const [id,key] of [['question','question'],['answer','answer'],['page','progress'],['detail','detail']])
       document.getElementById(id).textContent = d[key] || '';
     document.getElementById('next').disabled = !d.answer;
@@ -22,6 +32,14 @@ async function refresh() {
   } finally { setTimeout(refresh, 1000); }
 }
 document.getElementById('next').onclick = () => api('/panel-next', {}).catch(e => state.textContent = e.message);
+document.getElementById('generate-report').onclick = async () => {
+  try { const d = await api('/generate-report', {}); document.getElementById('detail').textContent = d.message; }
+  catch(e) { document.getElementById('detail').textContent = e.message; }
+};
+document.getElementById('export-pdf').onclick = () => window.print();
+document.getElementById('practice').onclick = () => {
+  document.getElementById('detail').textContent = 'Practice mode: start a new session to replay these questions.';
+};
 document.getElementById('start').onclick = async () => {
   try {
     const [tab] = await chrome.tabs.query({active:true, currentWindow:true});

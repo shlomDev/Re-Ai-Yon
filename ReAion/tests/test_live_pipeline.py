@@ -52,6 +52,19 @@ class LiveTests(unittest.TestCase):
         self.assertEqual(states[-1]['state'],'ANSWER ERROR')
         self.assertEqual(states[-1]['answer'],'')
 
+    def test_interview_completion_publishes_summary_without_closing_session(self):
+        states=[]
+        session=LiveSession(lambda _:('A short answer with enough context to review the result.', 'mock'),states.append)
+        session.answer('Tell me about a difficult incident you handled.')
+        session.complete()
+        self.assertEqual(states[-1]['state'], 'INTERVIEW COMPLETE')
+        self.assertEqual(states[-1]['summary']['questions_asked'], 1)
+        self.assertEqual(states[-1]['summary']['questions_answered'], 1)
+        self.assertEqual(states[-1]['summary']['star_opportunities'], 1)
+        self.assertIn('confidence', states[-1]['summary'])
+        session.complete()
+        self.assertEqual(len([s for s in states if s['state'] == 'INTERVIEW COMPLETE']), 1)
+
     def test_long_sentence_is_bounded(self):
         self.assertTrue(all(len(c.split())<=28 for c in chunk_answer('word '*150)))
 

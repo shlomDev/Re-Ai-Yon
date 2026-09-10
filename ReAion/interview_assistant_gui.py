@@ -5,18 +5,16 @@ import tkinter as tk
 
 from live_session import run
 from app_paths import private_path
-from runtime_state import read_state, request_next
+from runtime_state import read_state, request_next, write_json
 
 
 COLORS = {
-    "bg": "#242424",
-    "surface": "#2d2d2d",
-    "surface_raised": "#363636",
+    "bg": "#212121",
+    "surface": "#292929",
     "text": "#f8f7fb",
     "muted": "#b9b4c2",
     "violet": "#7442cf",
     "violet_hover": "#8655dd",
-    "border": "#454545",
 }
 
 
@@ -40,14 +38,14 @@ class App:
         tk.Label(title, text="Live interview assistant", bg=COLORS["bg"], fg=COLORS["muted"], font=("Segoe UI", 9)).pack(anchor="w")
         self.status = tk.StringVar()
         tk.Label(header, textvariable=self.status, bg=COLORS["bg"], fg=COLORS["violet_hover"], font=("Segoe UI", 9, "bold")).pack(side="right")
-        tk.Frame(frame, bg=COLORS["border"], height=1).pack(fill="x", pady=(8, 18))
+        tk.Frame(frame, bg=COLORS["violet"], height=4).pack(fill="x", pady=(8, 18))
 
-        tk.Label(frame, text="DETECTED QUESTION", bg=COLORS["bg"], fg=COLORS["muted"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
+        tk.Label(frame, text="DETECTED QUESTION", bg=COLORS["bg"], fg=COLORS["violet_hover"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
         self.question = tk.StringVar()
         self.question_label = tk.Label(frame, textvariable=self.question, bg=COLORS["surface"], fg=COLORS["text"], font=("Segoe UI", 20, "bold"), wraplength=520, justify="left", anchor="w", padx=16, pady=16, highlightbackground=COLORS["violet"], highlightthickness=2)
         self.question_label.pack(fill="x", pady=(0, 18))
 
-        tk.Label(frame, text="SUGGESTED ANSWER · TELEPROMPTER", bg=COLORS["bg"], fg=COLORS["muted"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
+        tk.Label(frame, text="SUGGESTED ANSWER · TELEPROMPTER", bg=COLORS["bg"], fg=COLORS["violet_hover"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
         answer_frame = tk.Frame(frame, bg=COLORS["violet"], padx=1, pady=1)
         answer_frame.pack(fill="both", expand=True)
         self.answer = tk.Text(answer_frame, wrap="word", font=("Segoe UI", 26), height=8, state="disabled", bg=COLORS["surface"], fg=COLORS["text"], insertbackground=COLORS["text"], relief="flat", padx=16, pady=16)
@@ -57,24 +55,30 @@ class App:
         controls.pack(fill="x", pady=(12, 0))
         self.detail = tk.StringVar()
         tk.Label(controls, textvariable=self.detail, wraplength=390, justify="left", bg=COLORS["bg"], fg=COLORS["muted"], font=("Segoe UI", 9)).pack(side="left", fill="x", expand=True)
-        tk.Button(controls, text="Next lines  ↑", command=request_next, bg=COLORS["violet"], activebackground=COLORS["violet_hover"], fg="white", activeforeground="white", font=("Segoe UI", 10, "bold"), relief="flat", padx=16, pady=8, cursor="hand2").pack(side="right")
+        self.next_button = tk.Button(controls, text="Next lines  ↑", command=request_next, bg=COLORS["violet"], activebackground=COLORS["violet_hover"], fg="white", activeforeground="white", font=("Segoe UI", 10, "bold"), relief="flat", padx=16, pady=8, cursor="hand2")
+        self.next_button.pack(side="right")
+        self.summary_actions = tk.Frame(frame, bg=COLORS["bg"])
+        for text, command in (("Generate report", self.generate_report), ("Export PDF", self.export_pdf), ("Practice these questions again", self.practice)):
+            tk.Button(self.summary_actions, text=text, command=command, bg=COLORS["violet"], activebackground=COLORS["violet_hover"], fg="white", activeforeground="white", font=("Segoe UI", 10, "bold"), relief="flat", padx=12, pady=7).pack(fill="x", pady=3)
 
         frame.bind("<Configure>", lambda e: self.question_label.configure(wraplength=max(300, e.width - 72)))
         root.protocol("WM_DELETE_WINDOW", self.close)
         self.worker = threading.Thread(target=run, args=(self.stop,), daemon=True)
         self.worker.start()
         self.previous = None
+        self.summary_shown = False
         self.poll()
 
     def poll(self):
-        if private_path("stop_assistant").exists():
-            self.close()
-            return
         data = read_state()
+        if data.get("state") == "INTERVIEW COMPLETE":
+            self.show_summary(data)
+        elif not self.summary_shown:
+            self.status.set(data.get("state", "NOT LISTENING") + "  " + data.get("progress", ""))
+            self.question.set(data.get("question", ""))
         self.status.set(data.get("state", "NOT LISTENING") + "  " + data.get("progress", ""))
-        self.question.set(data.get("question", ""))
         answer = data.get("answer", "")
-        if answer != self.previous:
+        if answer != self.previous and not self.summary_shown:
             self.answer.configure(state="normal")
             self.answer.delete("1.0", "end")
             self.answer.insert("1.0", answer)
@@ -82,6 +86,36 @@ class App:
             self.previous = answer
         self.detail.set(data.get("detail", "") or data.get("source", ""))
         self.root.after(250, self.poll)
+
+    def show_summary(self, data):
+        if self.summary_shown:
+            return
+        self.summary_shown = True
+        summary = data.get("summary", {})
+        self.question.set("★★★★★ Interview Summary")
+        text = (f"Questions asked:  ✔ {summary.get('questions_asked', 0)}\n\n"
+                f"Questions answered:  ✔ {summary.get('questions_answered', 0)}\n\n"
+                f"Weak answers:  {summary.get('weak_answers', 0)}\n\n"
+                f"STAR opportunities:  {summary.get('star_opportunities', 0)}\n\n"
+                f"Confidence:  {summary.get('confidence', 0)}%")
+        self.answer.configure(state="normal")
+        self.answer.delete("1.0", "end")
+        self.answer.insert("1.0", text)
+        self.answer.configure(state="disabled")
+        self.next_button.pack_forget()
+        self.summary_actions.pack(fill="x", pady=(10, 0))
+        self.detail.set("Interview ended. Review your summary or practice again.")
+
+    def generate_report(self):
+        state = read_state()
+        write_json(private_path("interview_report.json"), {"title": "ReAion Interview Summary", "summary": state.get("summary", {})})
+        self.detail.set("Report saved locally as interview_report.json")
+
+    def export_pdf(self):
+        self.detail.set("Use the browser Export PDF button to print this summary.")
+
+    def practice(self):
+        self.detail.set("Practice mode: start a new session to replay these questions.")
 
     def close(self):
         self.stop.set()

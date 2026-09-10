@@ -3,10 +3,25 @@
 <body>
 <button id="start">Use current meeting</button> <button id="stop">Stop listening</button>
 <p id="detail" role="status"></p>
-  <header><div class="logo" aria-hidden="true">↑</div><div><h1>ReAion</h1><p>Live interview assistant</p></div><span id="state">CONNECTING</span><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">☀</button></header>
-  <section class="steps"><b>MEETING</b><b>→</b><b>QUESTION</b><b>→</b><b>ANSWER</b></section>
-  <section><label>DETECTED QUESTION</label><div dir="auto" id="question" class="question">Waiting for the interviewer…</div></section>
-  <section class="answer"><label>SUGGESTED ANSWER · TELEPROMPTER</label><div dir="auto" id="answer">The answer will appear here automatically.</div><div class="progress"><span id="page">Waiting</span><button id="next">Next line</button></div></section>
-  <footer>Your microphone does not trigger new answers.</footer>
+  <header><div class="logo" aria-hidden="true">↑</div><div><h1>ReAion</h1><p>Live interview assistant</p></div><span id="state">CONNECTING</span></header>
+  <div id="live-view">
+    <section class="steps"><b>MEETING</b><b>→</b><b>QUESTION</b><b>→</b><b>ANSWER</b></section>
+    <section><label>DETECTED QUESTION</label><div dir="auto" id="question" class="question">Waiting for the interviewer…</div></section>
+    <section class="answer"><label>SUGGESTED ANSWER · TELEPROMPTER</label><div dir="auto" id="answer">The answer will appear here automatically.</div><div class="progress"><span id="page">Waiting</span><button id="next">Next line</button></div></section>
+    <footer>Your microphone does not trigger new answers.</footer>
+  </div>
+  <section id="summary-view" hidden>
+    <h2>★★★★★ Interview Summary</h2>
+    <div class="summary-metric"><span>Questions asked:</span><strong>✔ <b id="questions-asked">0</b></strong></div>
+    <div class="summary-metric"><span>Questions answered:</span><strong>✔ <b id="questions-answered">0</b></strong></div>
+    <div class="summary-metric"><span>Weak answers:</span><strong id="weak-answers">0</strong></div>
+    <div class="summary-metric"><span>STAR opportunities:</span><strong id="star-opportunities">0</strong></div>
+    <div class="summary-metric"><span>Confidence:</span><strong id="confidence">0%</strong></div>
+    <div class="summary-actions">
+      <button id="generate-report">Generate report</button>
+      <button id="export-pdf">Export PDF</button>
+      <button id="practice">Practice these questions again</button>
+    </div>
+  </section>
   <script src="sidepanel.js"></script>
 </body></html>

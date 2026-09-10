@@ -11,9 +11,13 @@
 - BOM-aware config reads; private profile no longer falls back to shared source files.
 
 ## Changes in this milestone
-- Browser and desktop answer views now share a charcoal, violet and amber visual
-  language, with high-contrast answer text, violet actions and amber active-state
-  emphasis. Static extension tests lock the core palette values.
+- Interview completion now leaves the browser and desktop assistant open and
+  publishes a summary with question counts, weak-answer flags, STAR opportunities
+  and a confidence estimate. Report generation saves a local JSON report and the
+  browser Export PDF action uses the print dialog.
+- Browser and desktop answer views now share a dark-grey and violet visual
+  language with high-contrast answer text. Static tests lock the core palette
+  values and prevent the former warm accent from returning.
 - Shared LiveSession pipeline used by desktop view and Chrome side panel.
 - Each complete transcript line is consumed once; partial lines are retained.
 - Candidate speech advances chunks and cannot enter question detection.

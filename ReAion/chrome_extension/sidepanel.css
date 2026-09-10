@@ -1,48 +1,41 @@
 :root {
   color-scheme: dark;
-  --bg: #242424;
-  --surface: #2d2d2d;
-  --surface-raised: #363636;
+  --bg: #212121;
+  --surface: #292929;
+  --surface-raised: #333333;
   --text: #f8f7fb;
   --muted: #b9b4c2;
   --violet: #7442cf;
   --violet-hover: #8655dd;
   --border: #454545;
-  --shadow: rgb(0 0 0 / 24%);
-}
-
-:root[data-theme="light"] {
-  color-scheme: light;
-  --bg: #f3f3f5;
-  --surface: #ffffff;
-  --surface-raised: #ececf1;
-  --text: #1f1f24;
-  --muted: #66616f;
-  --violet: #7442cf;
-  --violet-hover: #6234b9;
-  --border: #d7d4dc;
-  --shadow: rgb(0 0 0 / 12%);
 }
 
 * { box-sizing: border-box; }
 body { margin: 0; padding: 16px; background: var(--bg); color: var(--text); font: 14px "Segoe UI", Arial, sans-serif; }
-header { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); padding: 4px 0 14px; }
+header { display: flex; align-items: center; gap: 10px; border-bottom: 3px solid var(--violet); padding: 4px 0 14px; box-shadow: 0 4px 10px rgb(116 66 207 / 18%); }
 .logo { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; background: var(--violet); color: white; font-size: 23px; }
 h1 { margin: 0; font-size: 18px; letter-spacing: 1px; }
 p { margin: 3px 0; color: var(--muted); font-size: 12px; }
 #state { margin-left: auto; color: var(--violet-hover); font-size: 10px; font-weight: 800; letter-spacing: .06em; }
-.theme-toggle { margin-left: 8px; min-width: 42px; padding: 7px 10px; background: var(--surface-raised); color: var(--text); border: 1px solid var(--border); }
-.theme-toggle:hover { background: var(--surface); }
 .steps { display: flex; justify-content: space-between; padding: 14px 4px; color: var(--muted); font-size: 10px; }
 .steps b:first-child, .steps b:last-child { color: var(--violet-hover); }
 section { margin-top: 14px; }
-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: 1px; }
+label { display: block; margin-bottom: 7px; color: var(--violet-hover); font-size: 10px; font-weight: 800; letter-spacing: 1px; }
 .question, .answer { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 15px; }
 .question { border-left: 4px solid var(--violet); font-size: 21px; font-weight: 650; line-height: 1.3; }
-.answer { min-height: 250px; border-top: 4px solid var(--violet); color: var(--text); font-size: 22px; line-height: 1.45; box-shadow: 0 6px 18px var(--shadow); }
+.answer { min-height: 250px; border-top: 4px solid var(--violet); color: var(--text); font-size: 22px; line-height: 1.45; box-shadow: 0 6px 18px rgb(0 0 0 / 24%); }
 .progress { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; color: var(--muted); font-size: 11px; }
 button { border: 0; border-radius: 18px; background: var(--violet); color: white; padding: 8px 13px; font-weight: 700; cursor: pointer; }
 button:hover { background: var(--violet-hover); }
-button:focus-visible { outline: 3px solid var(--violet-hover); outline-offset: 2px; }
-#stop { border: 1px solid var(--border); background: var(--surface-raised); color: var(--text); }
+button:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+#stop { border: 1px solid #5a5a5a; background: var(--surface-raised); }
 footer { position: fixed; bottom: 12px; color: var(--muted); font-size: 11px; }
+#summary-view { margin-top: 24px; }
+#summary-view h2 { margin: 0 0 24px; color: var(--text); font-size: 24px; }
+.summary-metric { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); padding: 13px 4px; color: var(--muted); font-size: 16px; }
+.summary-metric strong { color: var(--text); }
+.summary-metric strong:first-letter { color: var(--violet-hover); }
+.summary-actions { display: grid; gap: 10px; margin-top: 24px; }
+.summary-actions button { width: 100%; border-radius: 8px; padding: 11px 14px; }
+.summary-actions button + button { background: var(--surface-raised); border: 1px solid var(--violet); }
+@media print { body { background: white; color: black; } #summary-view { display: block !important; } #live-view, header, #start, #stop, #detail { display: none !important; } .summary-metric { color: #333; border-color: #ccc; } .summary-metric strong, #summary-view h2 { color: #111; } }
