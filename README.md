@@ -12,7 +12,9 @@ ReAion is a live interview assistant that keeps the interview visible while show
 - Is designed for Google Meet, Microsoft Teams, Zoom, Webex, Amazon Chime and other browser/desktop interview platforms.
 - Can use your candidate profile, answer bank and interview guidance as context.
 
-![ReAion demo](ReAion_demo_fluent.gif)
+<p align="center">
+  <img src="ReAion_demo_fluent.gif" alt="ReAion Demo" width="100%">
+</p>
 
 ## How to run it
 
