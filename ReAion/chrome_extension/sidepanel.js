@@ -47,8 +47,22 @@ async function autoSelectCurrentMeeting() {
     await api('/select-meeting', {url:tab.url, title:tab.title || 'Interview'});
     await chrome.scripting.executeScript({target:{tabId:tab.id}, files:['content.js']});
     document.getElementById('detail').textContent = 'Meeting detected automatically. Join normally; listening starts when call controls are detected.';
+    document.getElementById('meeting-url').value = tab.url.split('#')[0];
   } catch(e) { document.getElementById('detail').textContent = e.message; }
 }
+
+document.getElementById('open-link').onclick = async () => {
+  const input = document.getElementById('meeting-url');
+  const raw = input.value.trim();
+  if (!validMeetingUrl(raw)) { document.getElementById('detail').textContent = 'Enter a supported HTTPS meeting link.'; input.focus(); return; }
+  try {
+    const [tab] = await chrome.tabs.query({active:true, currentWindow:true});
+    if (!tab?.id) throw new Error('No active browser tab found.');
+    await api('/select-meeting', {url:raw.split('#')[0], title:tab.title || 'Interview'});
+    if (tab.url !== raw) await chrome.tabs.update(tab.id, {url:raw});
+    document.getElementById('detail').textContent = 'Meeting opened. Join normally; listening starts after call controls are detected.';
+  } catch (e) { document.getElementById('detail').textContent = e.message; }
+};
 document.getElementById('stop').onclick = () => api('/stop', {}).catch(e => state.textContent = e.message);
 refresh();
 

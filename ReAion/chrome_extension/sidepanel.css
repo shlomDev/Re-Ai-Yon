@@ -39,3 +39,10 @@ footer { position: fixed; bottom: 12px; color: var(--muted); font-size: 11px; }
 .summary-actions button { width: 100%; border-radius: 8px; padding: 11px 14px; }
 .summary-actions button + button { background: var(--surface-raised); border: 1px solid var(--violet); }
 @media print { body { background: white; color: black; } #summary-view { display: block !important; } #live-view, header, #start, #stop, #detail { display: none !important; } .summary-metric { color: #333; border-color: #ccc; } .summary-metric strong, #summary-view h2 { color: #111; } }
+
+#start-panel { margin: 14px 0 10px; }
+.link-row { display: flex; gap: 8px; }
+#meeting-url { min-width: 0; flex: 1; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); padding: 9px 10px; font: inherit; }
+#meeting-url:focus { outline: 2px solid var(--violet); outline-offset: 1px; }
+#open-link { white-space: nowrap; border-radius: 8px; }
+.hint { margin-top: 6px; color: var(--muted); font-size: 11px; }
