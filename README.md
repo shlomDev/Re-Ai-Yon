@@ -1,7 +1,5 @@
 # ReAion
 
-**ReAion** (pronounced *reh-ah-yon*) means **interview** — ראיון — in Hebrew.
-
 ReAion is a browser-first live interview assistant. It listens to the
 interviewer, detects completed questions, generates a suggested answer, and
 shows it beside the meeting in a large, readable teleprompter.
