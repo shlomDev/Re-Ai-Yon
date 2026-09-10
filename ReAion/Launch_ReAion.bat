@@ -15,29 +15,26 @@ if %errorlevel%==0 (set "PY=py") else (
 )
 
 if not exist ".venv\Scripts\python.exe" (
-  echo [1/4] Creating private Python environment...
+  echo [1/3] First-time setup: creating private Python environment...
   %PY% -m venv .venv || goto :fail
 )
 set "VPY=%~dp0.venv\Scripts\python.exe"
 
 if not exist ".venv\.dependencies-ready" (
-  echo [2/4] Installing ReAion dependencies...
+  echo [2/3] First-time setup: installing ReAion dependencies...
   "%VPY%" -m pip install --upgrade pip || goto :fail
   "%VPY%" -m pip install -r requirements.txt || goto :fail
   "%VPY%" -m playwright install chromium || goto :fail
   type nul > ".venv\.dependencies-ready"
 )
 
-echo [3/4] Preparing private user profile...
+echo [3/3] Starting ReAion...
 "%VPY%" setup_private_profile.py || goto :fail
-echo [4/4] Starting ReAion...
-"%VPY%" health_check.py
-"%VPY%" auto_meet_watch.py
+"%VPY%" quick_start.py || goto :fail
 exit /b 0
 
 :fail
 echo.
-echo Setup failed. The detailed error is above.
-echo Fix the issue and run Launch_ReAion.bat again.
+echo ReAion could not start. The detailed error is above.
 pause
 exit /b 1
