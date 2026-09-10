@@ -15,7 +15,7 @@ ReAion is a live interview assistant that keeps the interview visible while show
 - Detects supported meeting links automatically and offers **Open meeting in ReAion** from Chrome's context menu; no URL textbox is required.
 
 <p align="center">
-  <img src="ReAion_demo_fluent.gif" alt="ReAion Demo" width="100%">
+  <img src="docs/assets/ReAion_demo_fluent.gif" alt="ReAion Demo" width="100%">
 </p>
 
 ## How to run it
