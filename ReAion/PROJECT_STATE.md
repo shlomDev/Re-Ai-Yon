@@ -1,7 +1,7 @@
-# ReAion project state — 0.2.0 development milestone (2026-09-09)
+# ReAion project state — 0.2.0 development milestone (2026-09-10)
 
 ## Verified now
-- 40 Python unit/regression tests pass in Linux/Python 3.12.
+- 42 Python unit/regression tests pass in Linux/Python 3.12.
 - Deterministic mock_interview.py uses the real segmentation, session controller,
   teleprompter, atomic state writer and HTTP panel endpoint. Synthetic Q&A only.
 - Node runtime fixture verifies selected active-call microphone handling; pre-join
@@ -11,6 +11,9 @@
 - BOM-aware config reads; private profile no longer falls back to shared source files.
 
 ## Changes in this milestone
+- Browser and desktop answer views now share a charcoal, violet and amber visual
+  language, with high-contrast answer text, violet actions and amber active-state
+  emphasis. Static extension tests lock the core palette values.
 - Shared LiveSession pipeline used by desktop view and Chrome side panel.
 - Each complete transcript line is consumed once; partial lines are retained.
 - Candidate speech advances chunks and cannot enter question detection.

@@ -4,6 +4,9 @@
 
 ReAion is an interview-assistant project designed to keep the meeting visible while a side panel shows the interviewer's question and a readable suggested answer. A microphone-following teleprompter presents the answer in short chunks, helping you keep your place while speaking.
 
+The interface uses a charcoal base with violet primary actions and a focused
+amber accent for active status and teleprompter progress.
+
 **Current release: 0.2.0 development source.** The Chrome extension requires a local Python companion. Live meeting audio and signed-in AI automation have not passed an end-to-end test; one-click installation is still planned.
 
 [Developer setup](ReAion/README.md) · [Verified project state](ReAion/PROJECT_STATE.md) · [Roadmap](ReAion/ROADMAP.md)
@@ -83,7 +86,7 @@ For microphone capture and AI setup, follow the [developer installation instruct
 | Windows | Audio, volume, window and launcher integration code exists; native live validation remains. |
 | Linux / macOS | Shared core and platform guards exist; capture, permissions and desktop behavior remain experimental. |
 | Desktop distribution | Optional desktop view and Windows build recipes exist; no tested EXE, DMG or AppImage is supplied. |
-| Automated checks | 40 Python tests, deterministic mock pipeline, Node extension fixtures and Python syntax checks passed in the development environment. |
+| Automated checks | 42 Python tests, deterministic mock pipeline, Node extension fixtures and Python syntax checks passed in the development environment. |
 
 Run component checks from `ReAion/`:
 

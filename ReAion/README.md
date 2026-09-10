@@ -14,6 +14,9 @@ See the [detailed repository overview](../README.md) for the workflow, answer-en
 
 AI-generated layout mockup with simulated content, not an actual screenshot or proof of live integration. ChatGPT replies stay in its own window; the pictured custom-panel answer applies to engines that return text. Run the mock below to see the actual implemented panel.
 
+The current visual theme uses charcoal surfaces, violet primary actions and an
+amber listening/progress accent, with white high-contrast question and answer text.
+
 ## Test the mock first (no AI account or audio devices)
 
 ```
