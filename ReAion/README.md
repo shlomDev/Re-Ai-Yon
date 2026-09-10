@@ -17,11 +17,10 @@ ReAion is a live interview assistant that detects interview questions and shows 
 
 ### Windows
 
-1. Run `install.bat` once.
-2. Run `start_auto_watcher.bat`.
-3. Open your interview in Chrome.
-4. Open the ReAion extension side panel.
-5. Click **Use current meeting**.
+1. Double-click `Launch_ReAion.bat`.
+2. Paste your interview link and click **Start Interview**.
+
+On the first run, ReAion installs its dependencies automatically. It opens the interview in Chrome but stays armed and idle until the meeting UI confirms that you have actually joined the call. Only then does ReAion start listening and launch the answer panel.
 
 ### Quick mock test
 
