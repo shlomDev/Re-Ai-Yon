@@ -9,13 +9,14 @@ from runtime_state import read_state, request_next
 
 
 COLORS = {
-    "bg": "#171717",
-    "surface": "#202020",
+    "bg": "#242424",
+    "surface": "#2d2d2d",
+    "surface_raised": "#363636",
     "text": "#f8f7fb",
     "muted": "#b9b4c2",
     "violet": "#7442cf",
     "violet_hover": "#8655dd",
-    "amber": "#ffc400",
+    "border": "#454545",
 }
 
 
@@ -38,16 +39,16 @@ class App:
         tk.Label(title, text="ReAion", bg=COLORS["bg"], fg=COLORS["text"], font=("Segoe UI", 16, "bold")).pack(anchor="w")
         tk.Label(title, text="Live interview assistant", bg=COLORS["bg"], fg=COLORS["muted"], font=("Segoe UI", 9)).pack(anchor="w")
         self.status = tk.StringVar()
-        tk.Label(header, textvariable=self.status, bg=COLORS["bg"], fg=COLORS["amber"], font=("Segoe UI", 9, "bold")).pack(side="right")
-        tk.Frame(frame, bg=COLORS["amber"], height=4).pack(fill="x", pady=(8, 18))
+        tk.Label(header, textvariable=self.status, bg=COLORS["bg"], fg=COLORS["violet_hover"], font=("Segoe UI", 9, "bold")).pack(side="right")
+        tk.Frame(frame, bg=COLORS["border"], height=1).pack(fill="x", pady=(8, 18))
 
-        tk.Label(frame, text="DETECTED QUESTION", bg=COLORS["bg"], fg=COLORS["amber"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
+        tk.Label(frame, text="DETECTED QUESTION", bg=COLORS["bg"], fg=COLORS["muted"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
         self.question = tk.StringVar()
         self.question_label = tk.Label(frame, textvariable=self.question, bg=COLORS["surface"], fg=COLORS["text"], font=("Segoe UI", 20, "bold"), wraplength=520, justify="left", anchor="w", padx=16, pady=16, highlightbackground=COLORS["violet"], highlightthickness=2)
         self.question_label.pack(fill="x", pady=(0, 18))
 
-        tk.Label(frame, text="SUGGESTED ANSWER · TELEPROMPTER", bg=COLORS["bg"], fg=COLORS["amber"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
-        answer_frame = tk.Frame(frame, bg=COLORS["amber"], padx=1, pady=1)
+        tk.Label(frame, text="SUGGESTED ANSWER · TELEPROMPTER", bg=COLORS["bg"], fg=COLORS["muted"], font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 7))
+        answer_frame = tk.Frame(frame, bg=COLORS["violet"], padx=1, pady=1)
         answer_frame.pack(fill="both", expand=True)
         self.answer = tk.Text(answer_frame, wrap="word", font=("Segoe UI", 26), height=8, state="disabled", bg=COLORS["surface"], fg=COLORS["text"], insertbackground=COLORS["text"], relief="flat", padx=16, pady=16)
         self.answer.pack(fill="both", expand=True, pady=(4, 0))
