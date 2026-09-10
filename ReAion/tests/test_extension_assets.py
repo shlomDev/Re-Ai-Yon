@@ -9,6 +9,9 @@ class ExtensionAssetTests(unittest.TestCase):
         self.assertIn("sidePanel", manifest["permissions"])
         self.assertEqual(manifest["side_panel"]["default_path"], "sidepanel.html")
         self.assertTrue((root/"sidepanel.js").exists())
+        self.assertIn("contextMenus", manifest["permissions"])
+        self.assertNotIn('id="start"', (root/"sidepanel.html").read_text())
+        self.assertIn("Open meeting in ReAion", (root/"background.js").read_text())
 
     def test_side_panel_uses_reaion_dark_grey_violet_palette(self):
         root=Path(__file__).resolve().parents[1]/"chrome_extension"

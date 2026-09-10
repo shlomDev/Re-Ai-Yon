@@ -8,7 +8,8 @@
     "sidePanel",
     "tabs",
     "activeTab",
-    "scripting"
+    "scripting",
+    "contextMenus"
   ],
   "host_permissions": [
     "https://meet.google.com/*",

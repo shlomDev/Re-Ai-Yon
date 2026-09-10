@@ -40,13 +40,16 @@ document.getElementById('export-pdf').onclick = () => window.print();
 document.getElementById('practice').onclick = () => {
   document.getElementById('detail').textContent = 'Practice mode: start a new session to replay these questions.';
 };
-document.getElementById('start').onclick = async () => {
+async function autoSelectCurrentMeeting() {
   try {
     const [tab] = await chrome.tabs.query({active:true, currentWindow:true});
+    if (!tab?.url || !/^https:\/\/(?:[^/]*\.)?(?:meet\.google\.com|teams\.microsoft\.com|teams\.live\.com|zoom\.us|zoom\.com|webex\.com|app\.chime\.aws)\//i.test(tab.url)) return;
     await api('/select-meeting', {url:tab.url, title:tab.title || 'Interview'});
     await chrome.scripting.executeScript({target:{tabId:tab.id}, files:['content.js']});
-    document.getElementById('detail').textContent = 'Meeting selected. Join normally; listening starts when call controls are detected.';
+    document.getElementById('detail').textContent = 'Meeting detected automatically. Join normally; listening starts when call controls are detected.';
   } catch(e) { document.getElementById('detail').textContent = e.message; }
-};
+}
 document.getElementById('stop').onclick = () => api('/stop', {}).catch(e => state.textContent = e.message);
 refresh();
+
+autoSelectCurrentMeeting();
